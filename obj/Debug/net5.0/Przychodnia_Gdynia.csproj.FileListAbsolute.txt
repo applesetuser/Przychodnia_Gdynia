@@ -1,0 +1,15 @@
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.csproj.AssemblyReference.cache
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.AssemblyInfoInputs.cache
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.AssemblyInfo.cs
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.csproj.CoreCompileInputs.cache
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/Przychodnia_Gdynia.deps.json
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/Przychodnia_Gdynia.runtimeconfig.json
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/Przychodnia_Gdynia.runtimeconfig.dev.json
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/Przychodnia_Gdynia.dll
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/ref/Przychodnia_Gdynia.dll
+/Users/ik/Desktop/Przychodnia_Gdynia/bin/Debug/net5.0/Przychodnia_Gdynia.pdb
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.dll
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/ref/Przychodnia_Gdynia.dll
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.pdb
+/Users/ik/Desktop/Przychodnia_Gdynia/obj/Debug/net5.0/Przychodnia_Gdynia.genruntimeconfig.cache
