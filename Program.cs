@@ -240,15 +240,8 @@ namespace Przychodnia_Gdynia
             Uzytkownik Franek = new Uzytkownik(false, true);
             Console.Clear();
             Frame.Panel_Uzytkownika();
-            if(Franek.GetZalogowany() == true)
-            {
-                Console.WriteLine("zalogowany");
-            }
-            else
-            {
-                WriteLine("niezalogowany");
-            }
-            
+            if(Franek.GetZalogowany() == true) Console.WriteLine("zalogowany");
+            else WriteLine("niezalogowany");
         }
         public static void AKTUALNOSCI()
         {
@@ -318,8 +311,9 @@ namespace Przychodnia_Gdynia
                 //–––––––––––––//
               
             Menu.Glowne();
-            Uzytkownik Franek = new Uzytkownik(true, true, "dvv", "gd", "gdf", "ggfd");
+            //Uzytkownik Franek = new Uzytkownik(true, true, "dvv", "gd", "gdf", "ggfd");
 
         }
     }
+
 }
