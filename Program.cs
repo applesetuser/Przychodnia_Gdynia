@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Text;
 using static System.Console;
-//using System.Data.SQLite;
 
 namespace Przychodnia_Gdynia
 {   
@@ -238,8 +237,17 @@ namespace Przychodnia_Gdynia
     {
         public static void USER_PANEL()
         {
+            Uzytkownik Franek = new Uzytkownik(false, true);
             Console.Clear();
             Frame.Panel_Uzytkownika();
+            if(Franek.GetZalogowany() == true)
+            {
+                Console.WriteLine("zalogowany");
+            }
+            else
+            {
+                WriteLine("niezalogowany");
+            }
             
         }
         public static void AKTUALNOSCI()
@@ -304,28 +312,14 @@ namespace Przychodnia_Gdynia
     }
     class Program
     {   
-        /*
-        public static Uzytkownik User;
-        public static string imie;
-        public static string nazwisko;
-        public static string email;
-        public static string haslo;
-        public static Boolean zalogowany;
-        public static Boolean zarejestrowany;
-        */
         static void Main(string[] args)
         {
-                                //««««DEBUG««««//
-                            //–––––––––––––//
-
-            //Uzytkownik Franek = new Uzytkownik("Mata", "Matczak", "mata@email.com", "MC", true, true);
-
-            //WriteLine("Franek Imie = {0} Nazwisko = {1} Email = {3} Haslo = {4}", Franek.GetImie, Franek.GetNazwisko, Franek.GetEmail, Franek.GetHaslo);               
+                //««««DEBUG««««//
+                //–––––––––––––//
+              
             Menu.Glowne();
-            //Menu_Opcje.AKTUALNOSCI();
-            //Menu_Opcje.USER_PANEL();
-            //Frame.Przychodnia();
-            //Frame.Aktualnosci();
+            Uzytkownik Franek = new Uzytkownik(true, true, "dvv", "gd", "gdf", "ggfd");
+
         }
     }
 }

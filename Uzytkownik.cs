@@ -11,15 +11,20 @@ namespace Przychodnia_Gdynia
         private string Nazwisko;
         private string Email;
         private string Haslo;
-        private Boolean Zalogowany;
-        private Boolean Zarejestrowany;
+        public Boolean Zalogowany;
+        public Boolean Zarejestrowany;
         public string GetImie() { return this.Imie; }
         public string GetNazwisko() { return this.Nazwisko; }
         public string GetEmail() { return this.Email; }
         public string GetHaslo() { return this.Haslo; }
         public Boolean GetZalogowany() { return this.Zalogowany; }
         public Boolean GetZarejestrowany() { return this.Zarejestrowany; }
-        public Uzytkownik(string imie, string nazwisko, string email, string haslo, Boolean zalogowany, Boolean zarejestrowany)
+        public Uzytkownik(Boolean zalogowany, Boolean zarejestrowany)
+        {
+            this.Zalogowany = zalogowany;
+            this.Zarejestrowany = zarejestrowany;
+        }
+        public Uzytkownik(Boolean zalogowany, Boolean zarejestrowany, string imie, string nazwisko, string email, string haslo)
         {
             this.Imie = imie;
             this.Nazwisko = nazwisko;
