@@ -4,6 +4,8 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Text;
 using static System.Console;
+using System.Data.SQLite;
+
 
 namespace Przychodnia_Gdynia
 {   
@@ -305,15 +307,38 @@ namespace Przychodnia_Gdynia
     }
     class Program
     {   
+        
 
+        
         
         static void Main(string[] args)
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-              
-            Menu.Glowne();
-            //Uzytkownik Franek = new Uzytkownik(true, true, "dvv", "gd", "gdf", "ggfd");
+                //Menu.Glowne();
+            //string stm = "SELECT * FROM users";
+            string cs = "Data Source=./uzytkownicy.db";
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            string stm = "SELECT * FROM users";
+
+            using var cmd3 = new SQLiteCommand(stm, con);               //odwolanie sie okreslonej tablicy (w tym przypadku zmiennej "client" ktora jest zdefiniowana na poczatku)
+            using SQLiteDataReader reader = cmd3.ExecuteReader();    
+           
+            while (reader.Read())
+            {
+
+                Console.WriteLine($"{reader.GetInt32(0)+ "."} {reader.GetString(2)}");  //getint(0) getstring(1) jak pisalem wczesniej tu trzeba okreslic typ zwrazanych dannych oraz indek okresla co to sa za dane(np 0 to indeks, 1 to nazwa)
+
+            }
+            Console.Write(": ");
+            
+            
+            
+            
+            
+            
 
 
             
