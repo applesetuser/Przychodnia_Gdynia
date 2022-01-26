@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Threading;
-using System.Windows.Input;
-using System.Collections.Generic;
-using System.Text;
 using static System.Console;
 using System.Data.SQLite;
+using System.Collections.Generic;
 
 
 namespace Przychodnia_Gdynia
-{   
+{
     class Funkcje_Pomocnicze
     {  
         public static void TimerDot(int time) //Timer but in dots (number == dots number)
@@ -59,7 +57,42 @@ namespace Przychodnia_Gdynia
         for(int i = times; times>0; times--)
         Console.Write(""); 
         }  
-    
+        public static bool DateCheck(string date)
+        {
+            string today = System.DateTime.Now.ToString("yyyy.MM.dd");
+
+            List<string> now = new List<string>(today.Split('.'));
+            int thisDay = int.Parse(now[2]);
+            int thisMonth = int.Parse(now[1]);
+            int thisYear = int.Parse(now[0]);
+
+            List<string> data = new List<string>(date.Split('.'));
+            int day;
+            int month;
+            int year;
+
+            if (data.Count == 3)
+            {
+
+                int.TryParse(data[0], out day);
+                int.TryParse(data[1], out month);
+                int.TryParse(data[2], out year);
+            }
+            else
+                return false;
+
+            if (day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900 && year < 3000 && thisDay + thisMonth * 10 + thisYear * 1000 > day + month * 10 + year * 1000)
+                return true;
+            else
+                return false;
+
+        }
+        public static bool PeselCheck(string pesel)
+        {
+            int number = pesel.Length;
+            if(number == 11) return true;
+            else return false;
+        }
     }
     class Frame
     {
@@ -231,7 +264,57 @@ namespace Przychodnia_Gdynia
         }
         public static void Rejestracja()
         {
-
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+            Console.Write("Podaj imie potrzebne do rejestracji: ");
+            string name = ReadLine();
+            Console.Write("Podaj nazwisko potrzebne do rejestracji: ");
+            string surname = ReadLine();
+            Console.Write("Podaj pesel potrzebny do rejestracji: ");
+            string pesel;
+            while (true)
+            {
+                pesel = Console.ReadLine();
+                if (Funkcje_Pomocnicze.PeselCheck(pesel) == true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Pesel musi składać się z 11 liter");
+                    Console.Write("Podaj numer Pesel jeszcze raz: ");
+                }
+            }
+            Console.Write("Podaj haslo potrzebne do rejestracji: ");
+            string password = ReadLine();
+            Console.Write("Podaj date urodzenia (w formacie [dd.mm.rrrr]): ");
+            string birth;
+            while (true)
+            {
+                birth = Console.ReadLine();
+                if (Funkcje_Pomocnicze.DateCheck(birth) == true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podana data jest nieprawidlowa.");
+                    Console.Write("Podaj date jeszcze raz: ");
+                }
+            }
+            using var cmd4 = new SQLiteCommand(con);
+            cmd4.CommandText = "INSERT INTO users(name, surname, pesel, birth, password, user_isLog) VALUES(@name,@surname,@pesel,@birth,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
+            cmd4.Parameters.AddWithValue("@user_name", name); 
+            cmd4.Parameters.AddWithValue("@surname", surname); 
+            cmd4.Parameters.AddWithValue("@pesel", pesel);
+            cmd4.Parameters.AddWithValue("@birth", birth);
+            cmd4.Parameters.AddWithValue("@password", password);
+            cmd4.Parameters.AddWithValue("@user_isLog", false);
+            cmd4.Prepare();
+            cmd4.ExecuteNonQuery();
+            Console.Clear();
+            Console.WriteLine("Klient " + name + surname +" dodany");
         }
     
     }
@@ -307,7 +390,43 @@ namespace Przychodnia_Gdynia
     }
     class Program
     {   
-        
+        public static void Wyswietlanie()
+        {
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+            string users = "SELECT * FROM users WHERE user_name = 'MarekB'";
+            using var cmd2 = new SQLiteCommand(users, con);
+            using SQLiteDataReader reader2 = cmd2.ExecuteReader();
+            Console.WriteLine();
+            while (reader2.Read())
+            {
+
+                if($"{reader2.GetString(4)}" == "true") Console.WriteLine("kmbfdb"); 
+
+            }
+            Console.WriteLine();
+        }
+        public static void addClient(string name)
+            {
+                string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+                using var con = new SQLiteConnection(cs);
+                con.Open();
+                string displayname = "temp";
+                string passwd = "temp";
+                Console.Write("imie: ");
+                name = Console.ReadLine();
+                using var cmd4 = new SQLiteCommand(con);
+                cmd4.CommandText = "INSERT INTO users(user_name, user_displayname, user_passwd ) VALUES(@user_name,@user_displayname,@user_passwd)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
+                cmd4.Parameters.AddWithValue("@user_name", name); 
+                cmd4.Parameters.AddWithValue("@user_displayname", displayname);   
+                cmd4.Parameters.AddWithValue("@user_passwd", passwd);
+                cmd4.Prepare();
+                cmd4.ExecuteNonQuery();
+                Console.Clear();
+                Console.WriteLine("Klient " + name + " dodany");
+
+            }
 
         
         
@@ -315,28 +434,12 @@ namespace Przychodnia_Gdynia
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-                //Menu.Glowne();
-            //string stm = "SELECT * FROM users";
-            string cs = "Data Source=./uzytkownicy.db";
-            using var con = new SQLiteConnection(cs);
-            con.Open();
-
-            string stm = "SELECT * FROM users";
-
-            using var cmd3 = new SQLiteCommand(stm, con);               //odwolanie sie okreslonej tablicy (w tym przypadku zmiennej "client" ktora jest zdefiniowana na poczatku)
-            using SQLiteDataReader reader = cmd3.ExecuteReader();    
-           
-            while (reader.Read())
-            {
-
-                Console.WriteLine($"{reader.GetInt32(0)+ "."} {reader.GetString(2)}");  //getint(0) getstring(1) jak pisalem wczesniej tu trzeba okreslic typ zwrazanych dannych oraz indek okresla co to sa za dane(np 0 to indeks, 1 to nazwa)
-
-            }
-            Console.Write(": ");
+                Menu.Glowne();
             
-            
-            
-            
+            //Program.addClient("igor");
+
+            Program.Wyswietlanie();
+
             
             
 
