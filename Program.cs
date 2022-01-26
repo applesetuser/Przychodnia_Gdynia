@@ -282,19 +282,23 @@ namespace Przychodnia_Gdynia
                 }
                 else
                 {
-                    Console.WriteLine("Pesel musi składać się z 11 liter");
+                    Console.WriteLine("Pesel musi składać się z 11 liczb");
                     Console.Write("Podaj numer Pesel jeszcze raz: ");
                 }
             }
             Console.Write("Podaj haslo potrzebne do rejestracji: ");
             string password = ReadLine();
-            Console.Write("Podaj date urodzenia (w formacie [dd.mm.rrrr]): ");
+            
+
+            
+            Console.Write("Podaj date urodzenia w formacie [dd.mm.rrrr]: ");
             string birth;
             while (true)
             {
-                birth = Console.ReadLine();
-                if (Funkcje_Pomocnicze.DateCheck(birth) == true)
+                string input = Console.ReadLine();
+                if (Funkcje_Pomocnicze.DateCheck(input) == true)
                 {
+                    birth = input;
                     break;
                 }
                 else
@@ -303,9 +307,11 @@ namespace Przychodnia_Gdynia
                     Console.Write("Podaj date jeszcze raz: ");
                 }
             }
+            
+
             using var cmd4 = new SQLiteCommand(con);
-            cmd4.CommandText = "INSERT INTO users(name, surname, pesel, birth, password, user_isLog) VALUES(@name,@surname,@pesel,@birth,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
-            cmd4.Parameters.AddWithValue("@user_name", name); 
+            cmd4.CommandText = "INSERT INTO users(name, surname, pesel, password, user_isLog) VALUES(@name,@surname,@pesel,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
+            cmd4.Parameters.AddWithValue("@name", name); 
             cmd4.Parameters.AddWithValue("@surname", surname); 
             cmd4.Parameters.AddWithValue("@pesel", pesel);
             cmd4.Parameters.AddWithValue("@birth", birth);
@@ -314,7 +320,7 @@ namespace Przychodnia_Gdynia
             cmd4.Prepare();
             cmd4.ExecuteNonQuery();
             Console.Clear();
-            Console.WriteLine("Klient " + name + surname +" dodany");
+            Console.WriteLine("Klient " + name + " " + surname +" dodany");
         }
     
     }
@@ -395,52 +401,26 @@ namespace Przychodnia_Gdynia
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
             using var con = new SQLiteConnection(cs);
             con.Open();
-            string users = "SELECT * FROM users WHERE user_name = 'MarekB'";
+            string users = "SELECT * FROM users WHERE name = 'dfhfg'";
             using var cmd2 = new SQLiteCommand(users, con);
             using SQLiteDataReader reader2 = cmd2.ExecuteReader();
             Console.WriteLine();
             while (reader2.Read())
             {
 
-                if($"{reader2.GetString(4)}" == "true") Console.WriteLine("kmbfdb"); 
+                if($"{reader2.GetString(6)}" == "0") Console.WriteLine("kmbfdb"); 
 
             }
             Console.WriteLine();
-        }
-        public static void addClient(string name)
-            {
-                string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
-                using var con = new SQLiteConnection(cs);
-                con.Open();
-                string displayname = "temp";
-                string passwd = "temp";
-                Console.Write("imie: ");
-                name = Console.ReadLine();
-                using var cmd4 = new SQLiteCommand(con);
-                cmd4.CommandText = "INSERT INTO users(user_name, user_displayname, user_passwd ) VALUES(@user_name,@user_displayname,@user_passwd)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
-                cmd4.Parameters.AddWithValue("@user_name", name); 
-                cmd4.Parameters.AddWithValue("@user_displayname", displayname);   
-                cmd4.Parameters.AddWithValue("@user_passwd", passwd);
-                cmd4.Prepare();
-                cmd4.ExecuteNonQuery();
-                Console.Clear();
-                Console.WriteLine("Klient " + name + " dodany");
-
-            }
-
-        
-        
+        } 
         static void Main(string[] args)
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-                Menu.Glowne();
+                //Menu.Glowne();
             
-            //Program.addClient("igor");
-
+            //Menu.Rejestracja();
             Program.Wyswietlanie();
-
-            
             
 
 
