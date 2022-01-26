@@ -1,11 +1,10 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-
 namespace Przychodnia_Gdynia
-{
+{    
     public class Uzytkownik
     {
         private string Imie;
@@ -35,5 +34,4 @@ namespace Przychodnia_Gdynia
             this.Zarejestrowany = zarejestrowany;
         }
     }
-
 }
