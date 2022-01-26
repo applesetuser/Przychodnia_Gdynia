@@ -310,13 +310,13 @@ namespace Przychodnia_Gdynia
             
 
             using var cmd4 = new SQLiteCommand(con);
-            cmd4.CommandText = "INSERT INTO users(name, surname, pesel, password, user_isLog) VALUES(@name,@surname,@pesel,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
+            cmd4.CommandText = "INSERT INTO users(name, surname, pesel, birth, password, user_isLog) VALUES(@name,@surname,@pesel,@birth,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
             cmd4.Parameters.AddWithValue("@name", name); 
             cmd4.Parameters.AddWithValue("@surname", surname); 
             cmd4.Parameters.AddWithValue("@pesel", pesel);
             cmd4.Parameters.AddWithValue("@birth", birth);
             cmd4.Parameters.AddWithValue("@password", password);
-            cmd4.Parameters.AddWithValue("@user_isLog", false);
+            cmd4.Parameters.AddWithValue("@user_isLog", true);
             cmd4.Prepare();
             cmd4.ExecuteNonQuery();
             Console.Clear();
@@ -401,7 +401,7 @@ namespace Przychodnia_Gdynia
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
             using var con = new SQLiteConnection(cs);
             con.Open();
-            string users = "SELECT * FROM users WHERE name = 'dfhfg'";
+            string users = "SELECT * FROM users WHERE name = 'kmbfdb'";
             using var cmd2 = new SQLiteCommand(users, con);
             using SQLiteDataReader reader2 = cmd2.ExecuteReader();
             Console.WriteLine();
@@ -417,10 +417,10 @@ namespace Przychodnia_Gdynia
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-                //Menu.Glowne();
+                Menu.Glowne();
             
             //Menu.Rejestracja();
-            Program.Wyswietlanie();
+            //Program.Wyswietlanie();
             
 
 
