@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Threading;
-using static System.Console;
 using System.Data.SQLite;
-using System.Collections.Generic;
 
 
 namespace Przychodnia_Gdynia
 {
+<<<<<<< HEAD
     class Funkcje_Pomocnicze
     {  
         public static void TimerDot(int time) //Timer but in dots (number == dots number)
@@ -393,6 +391,8 @@ namespace Przychodnia_Gdynia
 
         }
     }
+=======
+>>>>>>> b344e9759f05e397b87bce4f5f22d7d54c0a57b4
     class Program
     {   
         /*
