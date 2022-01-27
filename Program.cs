@@ -182,53 +182,52 @@ namespace Przychodnia_Gdynia
         public static void Glowne()
         {
             
+            Console.Clear();
+            //Console.WriteLine("---PRZYCHODNIA GDYNIA---");
+            Frame.Przychodnia();
+            DateTime thisDay = DateTime.Now;
+            // Display the date in the default (general) format.
+            Console.WriteLine("                          " + thisDay.ToString());
+            Console.WriteLine();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            String[] opcje = { "---PANEL UŻYTKOWNIKA---", "---AKTUALNOŚCI---", "---REJESTRACJA/LOGOWANIE---", "---RODO---", "---WYJŚCIE---" };
+            Menu_Config mainMenu = new Menu_Config(opcje);
+            int opt = mainMenu.Uruchom(opcje.Length);
+            switch (opt)
             {
-                Console.Clear();
-                //Console.WriteLine("---PRZYCHODNIA GDYNIA---");
-                Frame.Przychodnia();
-                DateTime thisDay = DateTime.Now;
-                // Display the date in the default (general) format.
-                Console.WriteLine("                          " + thisDay.ToString());
-                Console.WriteLine();
-                Console.WriteLine("");
-                Console.WriteLine("");
-                Console.WriteLine("");
-                Console.WriteLine("");
-                Console.WriteLine("");
-                String[] opcje = { "---PANEL UŻYTKOWNIKA---", "---AKTUALNOŚCI---", "---REJESTRACJA/LOGOWANIE---", "---RODO---", "---WYJŚCIE---" };
-                Menu_Config mainMenu = new Menu_Config(opcje);
-                int opt = mainMenu.Uruchom(opcje.Length);
-                switch (opt)
-                {
-                    case 0:
-                    //do zrobienia - user panel widoczny jedynie w momencie gdy uzytkownik jest zalogowany.
-                    //inaczej komunikat ze najpierw musi sie zalogowac
-                    Menu_Opcje.USER_PANEL();
-                    Funkcje_Pomocnicze.TimerDot(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Glowne();
-                    break;
-                    case 1:
-                    Menu_Opcje.AKTUALNOSCI();
-                    Funkcje_Pomocnicze.TimerDot(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Glowne();
-                    break;
-                    case 2:
-                    Menu.Wybor_LogRej();
-                    break;
-                    case 3:
-                    Menu_Opcje.RODO();
-                    Funkcje_Pomocnicze.TimerDot(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Glowne();
-                    break;
-                    case 4:
-                    Frame.Wyjscie();
-                    Thread.Sleep(1000);
-                    break;
-                }
+                case 0:
+                //do zrobienia - user panel widoczny jedynie w momencie gdy uzytkownik jest zalogowany.
+                //inaczej komunikat ze najpierw musi sie zalogowac
+                Menu_Opcje.USER_PANEL();
+                Funkcje_Pomocnicze.TimerDot(3);
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Glowne();
+                break;
+                case 1:
+                Menu_Opcje.AKTUALNOSCI();
+                Funkcje_Pomocnicze.TimerDot(3);
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Glowne();
+                break;
+                case 2:
+                Menu.Wybor_LogRej();
+                break;
+                case 3:
+                Menu_Opcje.RODO();
+                Funkcje_Pomocnicze.TimerDot(3);
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Glowne();
+                break;
+                case 4:
+                Frame.Wyjscie();
+                Thread.Sleep(1000);
+                break;
             }
+            
         }
         public static void Wybor_LogRej()
         {
@@ -396,6 +395,7 @@ namespace Przychodnia_Gdynia
     }
     class Program
     {   
+        /*
         public static void Wyswietlanie()
         {
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
@@ -412,7 +412,8 @@ namespace Przychodnia_Gdynia
 
             }
             Console.WriteLine();
-        } 
+        }
+        */ 
         static void Main(string[] args)
         {
                 //««««DEBUG««««//
