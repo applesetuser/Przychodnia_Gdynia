@@ -8,6 +8,7 @@ namespace Przychodnia_Gdynia
     {   
         static void Main(string[] args)
         {
+            Menu_Config.Wyswietlanie();
                 //««««DEBUG««««//
                 //–––––––––––––//
                 Menu.Menu_Glowne();
