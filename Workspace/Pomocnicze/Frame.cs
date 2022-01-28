@@ -41,12 +41,12 @@ namespace Przychodnia_Gdynia
 ██╔══██╗██║   ██║██║  ██║██║   ██║
 ██║  ██║╚██████╔╝██████╔╝╚██████╔╝
 ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ");
-            AdditionalFunctions.TimerDot(3);
+            Funkcje_Pomocnicze.TimerDot(3);
         }
         public static void Wyjscie()
         {
             Console.Clear();
-            AdditionalFunctions.TimerDot(3);
+            Funkcje_Pomocnicze.TimerDot(3);
             Console.WriteLine(@"██████╗  ██████╗     ███████╗ ██████╗ ██████╗  █████╗  ██████╗███████╗███████╗███╗   ██╗██╗ █████╗ ██╗
 ██╔══██╗██╔═══██╗    ╚══███╔╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝╚══███╔╝██╔════╝████╗  ██║██║██╔══██╗██║
 ██║  ██║██║   ██║      ███╔╝ ██║   ██║██████╔╝███████║██║       ███╔╝ █████╗  ██╔██╗ ██║██║███████║██║

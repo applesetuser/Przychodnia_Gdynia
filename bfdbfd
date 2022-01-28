@@ -1,0 +1,37 @@
+SqlCeConnection conn = null;
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            conn = new SqlCeConnection(@"Data Source=C:\Users\...\database.sdf");
+            conn.Open();
+            cmd = new SqlCeCommand("SELECT * FROM Uzytkownicy WHERE Login='"+login+"' AND Haslo='"+haslo+"'", conn);
+
+            rdr = cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+
+            if (rdr.HasRows == true)
+            { MessageBox.Show("Logowanie udane"); }
+            else
+            { MessageBox.Show("Logowanie nieudane"); }
+            con.Close();
+
+
+
+
+            Console.WriteLine("Podaj numer albumu:");
+                    Int32 login;
+                    Int32.TryParse(Console.ReadLine(), out login);
+                    Console.WriteLine("Podaj hasło:");
+                    String haslo = Console.ReadLine();
+                    String spr_haslo = "";
+                    using var cmd1 = new SQLiteCommand("SELECT haslo FROM student WHERE nr_albumu =" + login, con);
+                    using SQLiteDataReader reader = cmd1.ExecuteReader();
+                    while (reader.Read())
+                        {
+                            spr_haslo = reader.GetString(0);
+                            break;
+                        }
+                    if (spr_haslo == haslo && haslo != "")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Zalogowano Poprawnie");
+                        Console.ReadKey(true);

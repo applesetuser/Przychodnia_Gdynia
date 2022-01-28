@@ -6,24 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 
-namespace Przychodnia_Gdynia.Registration
+namespace Przychodnia_Gdynia
 {
-    class RegistrationService
+    class Rejestracja
     {
-        public static void Register()
+        public static void DodawanieUzytkownika()
         {
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
             using var con = new SQLiteConnection(cs);
             con.Open();
 
             
-            string name = AdditionalFunctions.WriteVariable("Imie");
-            string surname = AdditionalFunctions.WriteVariable("Nazwisko");
-            string pesel = AdditionalFunctions.WritePESEL();
+            string name = Funkcje_Pomocnicze.WriteVariable("Imie");
+            string surname = Funkcje_Pomocnicze.WriteVariable("Nazwisko");
+            string pesel = Funkcje_Pomocnicze.WritePESEL();
 
             Console.Write("Podaj Hasło: ");
             string password = ReadLine();
-            Console.Write("Powtórz Hasło:");
+            Console.Write("Powtórz Hasło: ");
             string password2 = ReadLine();
 
 
@@ -33,7 +33,7 @@ namespace Przychodnia_Gdynia.Registration
             while (true)
             {
                 string input = Console.ReadLine();
-                if (AdditionalFunctions.DateCheck(input) == true)
+                if (Funkcje_Pomocnicze.DateCheck(input) == true)
                 {
                     birth = input;
                     break;
@@ -47,17 +47,20 @@ namespace Przychodnia_Gdynia.Registration
 
 
             using var cmd4 = new SQLiteCommand(con);
-            cmd4.CommandText = $"INSERT INTO users(name, surname, pesel, birth, password) VALUES(@name,@surname,@pesel,@birth,@password)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
+            cmd4.CommandText = $"INSERT INTO users(name, surname, pesel, birth, password, user_isLog) VALUES(@name,@surname,@pesel,@birth,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
             cmd4.Parameters.AddWithValue("@name", name);
             cmd4.Parameters.AddWithValue("@surname", surname);
             cmd4.Parameters.AddWithValue("@pesel", pesel);
             cmd4.Parameters.AddWithValue("@birth", birth);
             cmd4.Parameters.AddWithValue("@password", password);
-            //cmd4.Parameters.AddWithValue("@user_isLog", true);
+            cmd4.Parameters.AddWithValue("@user_isLog", false);
             cmd4.Prepare();
             cmd4.ExecuteNonQuery();
             Console.Clear();
             Console.WriteLine("Klient " + name + " " + surname + " dodany");
+            Funkcje_Pomocnicze.EmptySpaceDots(3);
+            Funkcje_Pomocnicze.ClickToContinue();
+            Menu.Menu_Glowne();
         }
     }
 }

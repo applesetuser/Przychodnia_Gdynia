@@ -6,14 +6,6 @@ namespace Przychodnia_Gdynia
 {
     class Menu_Opcje
     {
-        public static void USER_PANEL()
-        {
-            //Uzytkownik Franek = new Uzytkownik(false, true);
-            //Console.Clear();
-            //Frame.Panel_Uzytkownika();
-            //if(Franek.GetZalogowany() == true) Console.WriteLine("Status Uzytkownika: zalogowany");
-            //else WriteLine("Status Uzytkownika: niezalogowany");
-        }
         public static void AKTUALNOSCI()
         {
             Console.Clear();

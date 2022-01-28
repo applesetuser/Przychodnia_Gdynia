@@ -26,13 +26,13 @@ namespace Przychodnia_Gdynia
 
 			if (i == Index)
 			{
-				prefix = "                 --->";
+				prefix = "                   --->";
 				ForegroundColor = ConsoleColor.Magenta;
 				//BackgroundColor = ConsoleColor.White;
 			}
 			else
 			{
-				prefix = "                     ";
+				prefix = "                       ";
 				ForegroundColor = ConsoleColor.White;
 				//BackgroundColor = ConsoleColor.Black;
 			}

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Przychodnia_Gdynia
 {
-    class AdditionalFunctions
+    class Funkcje_Pomocnicze
     {  
         public static void TimerDot(int time) //Timer but in dots (number == dots number)
         {
@@ -86,7 +86,6 @@ namespace Przychodnia_Gdynia
                 return false;
 
         }
-
         public static string WriteVariable(string variable)
         {
             while (true)
@@ -100,10 +99,9 @@ namespace Przychodnia_Gdynia
                     if (!containsInt)
                     {
                         return name;
-                        break;
                     }
                 }
-                Console.WriteLine($"Niepoprawne {variable}");
+                Console.WriteLine($"Niepoprawne {variable}.");
             }
         }
         public static string WritePESEL()
@@ -119,8 +117,8 @@ namespace Przychodnia_Gdynia
                 }
                 else
                 {
-                    Console.WriteLine("Niepoprawny numer PESEL");
-                    Console.WriteLine("PESEL musi składać się z 11 liczb");
+                    Console.WriteLine("Niepoprawny numer PESEL.");
+                    Console.WriteLine("PESEL musi składać się z 11 liczb.");
                     Console.Write("Podaj NR PESEL: ");
                 }
             }
@@ -134,7 +132,6 @@ namespace Przychodnia_Gdynia
             else
                 return false;
         }
-
         public static bool ValidatePassword(string pass1 , string pass2)
         {
             if (pass1 == pass2) return true;
