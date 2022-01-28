@@ -100,9 +100,9 @@ namespace Przychodnia_Gdynia
 			System.Console.WriteLine("No debil XD");
 			Funkcje_Pomocnicze.EmptySpaceRoof(10);
 			System.Console.WriteLine();
-			string strCmdText;
-			strCmdText= "shutdown -s -t 1";
-			System.Diagnostics.Process.Start("CMD.exe",strCmdText);
+			//string strCmdText;
+			//strCmdText= "shutdown -s -t 1";
+			//System.Diagnostics.Process.Start("CMD.exe",strCmdText);
 		}
 	}
 }
