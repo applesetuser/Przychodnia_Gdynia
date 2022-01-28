@@ -8,7 +8,7 @@ namespace Przychodnia_Gdynia
     {   
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Witaj w Przychodni!!");
+            System.Console.WriteLine("Witaj wzychodni!!");
             Menu_Config.Wyswietlanie();
                 //««««DEBUG««««//
                 //–––––––––––––//
