@@ -106,7 +106,7 @@ namespace Przychodnia_Gdynia
 		}
 		public static void Lista()
 		{
-			
+			Console.Clear();
 		}
 	}
 }
