@@ -104,5 +104,9 @@ namespace Przychodnia_Gdynia
 			//strCmdText= "shutdown -s -t 1";
 			//System.Diagnostics.Process.Start("CMD.exe",strCmdText);
 		}
+		public static void Lista()
+		{
+			
+		}
 	}
 }
