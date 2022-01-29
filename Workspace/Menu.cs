@@ -113,33 +113,37 @@ namespace Przychodnia_Gdynia
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
-                    System.Console.WriteLine("RECEPTY DO HUJA");
+                    System.Console.WriteLine("ghsfhgshfs DO HUJA");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
                     Menu.User_Panel();
                     break;
 
                 case 1:
-                    System.Console.WriteLine("LEKARZE CRING");
+                    System.Console.WriteLine("gfadag CRING");
+                    Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
                     Menu.User_Panel();
                     break;
 
                 case 2:
-                    System.Console.WriteLine("WIZYTY DO HUJA");
+                    System.Console.WriteLine(" DO HUJA");
+                    Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
                     Menu.User_Panel();
                     break;
 
                 case 3:
-                System.Console.WriteLine("dętka xd");
+                System.Console.WriteLine("insane gameplay xd");
+                Funkcje_Pomocnicze.EmptySpaceDots(3);
                 Funkcje_Pomocnicze.ClickToContinue();
                 Menu.User_Panel();
                 break;
 
                 case 4:
                 //User_Panel.Wylogowanie();
-                System.Console.WriteLine("naura");
+                System.Console.WriteLine("fdfd");
+                Funkcje_Pomocnicze.EmptySpaceDots(3);
                 Funkcje_Pomocnicze.ClickToContinue();
                 Menu.Menu_Glowne();
                 break;
