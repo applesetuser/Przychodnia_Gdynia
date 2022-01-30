@@ -123,7 +123,7 @@ namespace Przychodnia_Gdynia
 
                 case 1:
                     User_Panel.Lekarze();
-                    System.Console.WriteLine("Lista lekarzy specjalistów:");
+                    //System.Console.WriteLine("Lista lekarzy specjalistów:");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
                     Menu.Menu_Lekarze();
@@ -196,7 +196,7 @@ namespace Przychodnia_Gdynia
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---POWRÓT---" };
+            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---POPROŚ LEKARZA O RECEPTĘ---", "---POWRÓT---" };
             Menu_Config mainMenu = new Menu_Config(opcje);
             switch (mainMenu.Uruchom(opcje.Length))
             {
@@ -206,32 +206,63 @@ namespace Przychodnia_Gdynia
                         case "kardiolog":
                         Menu.Menu_LekarzKardiolog();
                         Funkcje_Pomocnicze.Kontynuacja();
-                        Menu.Menu_userPanel();
+                        //Menu.Menu_userPanel();
                         break;
                         
                         case "neurolog":
                         Menu.Menu_LekarzNeurolog();
                         Funkcje_Pomocnicze.Kontynuacja();
-                        Menu.Menu_userPanel();
+                        //Menu.Menu_userPanel();
                         break;
 
                         case "stomatolog":
                         Menu.Menu_LekarzStomatolog();
                         Funkcje_Pomocnicze.Kontynuacja();
-                        Menu.Menu_userPanel();
+                        //Menu.Menu_userPanel();
                         break;
                         
                         case "anestezjolog":
                         Menu_LekarzAnestezjolog();
                         Funkcje_Pomocnicze.Kontynuacja();
-                        Menu.Menu_userPanel();
+                        //Menu.Menu_userPanel();
                         break;
                     }
+                    Menu.Menu_userPanel();
                 break;
 
                 case 1:
+                switch(temp)
+                    {
+                        case "kardiolog":
+                        Menu.Menu_LekarzKardiolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        //Menu.Menu_userPanel();
+                        break;
+                        
+                        case "neurolog":
+                        Menu.Menu_LekarzNeurolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        //Menu.Menu_userPanel();
+                        break;
+
+                        case "stomatolog":
+                        Menu.Menu_LekarzStomatolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        //Menu.Menu_userPanel();
+                        break;
+                        
+                        case "anestezjolog":
+                        Menu_LekarzAnestezjolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        //Menu.Menu_userPanel();
+                        break;
+                    }
+                    Menu.Menu_userPanel();
+                break;
+
+                case 2:
                     Menu.Menu_Glowne();
-                    break;
+                break;
             }
 
         }
