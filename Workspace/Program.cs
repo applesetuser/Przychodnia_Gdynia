@@ -10,7 +10,7 @@ namespace Przychodnia_Gdynia
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-                Menu_Config.Wyswietlanie();
+                //Menu_Config.Wyswietlanie();
                 Menu.Menu_Glowne();
                //Menu.Menu_Lekarze();           
         }

@@ -115,7 +115,7 @@ namespace Przychodnia_Gdynia
             {
                 case 0:
                     User_Panel.Recepty();
-                    System.Console.WriteLine("Lista dostępnych recept: ");
+                    System.Console.WriteLine("Lista otrzymanych recept: ");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
                     Menu.Menu_userPanel();
@@ -126,7 +126,7 @@ namespace Przychodnia_Gdynia
                     System.Console.WriteLine("Lista lekarzy specjalistów:");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Menu_userPanel();
+                    Menu.Menu_Lekarze();
                     break;
 
                 case 2:
@@ -153,6 +153,7 @@ namespace Przychodnia_Gdynia
         }
         public static void Menu_Lekarze()
         {
+
             Console.Clear();
             //Frame.Lekarze();
             System.Console.WriteLine();
@@ -167,19 +168,19 @@ namespace Przychodnia_Gdynia
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
-                    Menu_WizRec("kardiolog");
+                    Menu_Wizyta("kardiolog");
                 break;
 
                 case 1:
-                    Menu_WizRec("neurolog");   
+                    Menu_Wizyta("neurolog");   
                 break;
 
                 case 2:
-                    Menu_WizRec("stomatolog");
+                    Menu_Wizyta("stomatolog");
                 break;
 
                 case 3:
-                    Menu_WizRec("anestezjolog");
+                    Menu_Wizyta("anestezjolog");
                 break;
 
                 case 4:
@@ -187,43 +188,68 @@ namespace Przychodnia_Gdynia
                 break;
             }        
         }
-        public static void Menu_WizRec(string temp)
+        public static void Menu_Wizyta(string temp)
         {
-            switch(temp)
+            Console.Clear();
+            //Frame.Wizyta();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---POWRÓT---" };
+            Menu_Config mainMenu = new Menu_Config(opcje);
+            switch (mainMenu.Uruchom(opcje.Length))
             {
-                case "kardiolog":
-                Menu.Menu_LekarzKardiolog();
+                case 0:
+                    switch(temp)
+                    {
+                        case "kardiolog":
+                        Menu.Menu_LekarzKardiolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_userPanel();
+                        break;
+                        
+                        case "neurolog":
+                        Menu.Menu_LekarzNeurolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_userPanel();
+                        break;
+
+                        case "stomatolog":
+                        Menu.Menu_LekarzStomatolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_userPanel();
+                        break;
+                        
+                        case "anestezjolog":
+                        Menu_LekarzAnestezjolog();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_userPanel();
+                        break;
+                    }
                 break;
 
-                case "neurolog":
-                Menu.Menu_LekarzNeurolog();
-                break;
-
-                case "stomatolog":
-                Menu.Menu_LekarzStomatolog();
-                break;
-
-                case "anestezjolog":
-                Menu.Menu_LekarzAnestezjolog();
-                break;
+                case 1:
+                    Menu.Menu_Glowne();
+                    break;
             }
 
         }
         public static void Menu_LekarzNeurolog()
         {
-
+           System.Console.WriteLine("neurolog"); 
         }
         public static void Menu_LekarzStomatolog()
         {
-
+            System.Console.WriteLine("stomatolog");
         }
         public static void Menu_LekarzAnestezjolog()
         {
-
+            System.Console.WriteLine("ANESTEZJOLOG");
         }
         public static void Menu_LekarzKardiolog()
         {
-
+            System.Console.WriteLine("kardiolog");
         }
     }
 }

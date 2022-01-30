@@ -15,7 +15,8 @@ namespace Przychodnia_Gdynia
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
             using var con = new SQLiteConnection(cs);
             con.Open();
-        
+
+            System.Console.WriteLine();
             string pesel = Funkcje_Pomocnicze.WritePESEL();
             string name = Funkcje_Pomocnicze.WriteVariable("Imie");
             string surname = Funkcje_Pomocnicze.WriteVariable("Nazwisko");
@@ -24,6 +25,7 @@ namespace Przychodnia_Gdynia
             string password = ReadLine();
             Console.Write("Powtórz Hasło: ");
             string password2 = ReadLine();
+            Funkcje_Pomocnicze.ValidatePassword(password, password2);
 
             Console.Write("Podaj date urodzenia w formacie [dd.mm.rrrr]: ");
             string birth;
