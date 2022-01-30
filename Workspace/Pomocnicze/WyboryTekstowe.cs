@@ -4,7 +4,7 @@ using static System.Console;
 
 namespace Przychodnia_Gdynia
 {
-    class Menu_Opcje
+    class WyboryTekstowe
     {
         public static void AKTUALNOSCI()
         {

@@ -15,18 +15,15 @@ namespace Przychodnia_Gdynia
             string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
             using var con = new SQLiteConnection(cs);
             con.Open();
-
-            
+        
+            string pesel = Funkcje_Pomocnicze.WritePESEL();
             string name = Funkcje_Pomocnicze.WriteVariable("Imie");
             string surname = Funkcje_Pomocnicze.WriteVariable("Nazwisko");
-            string pesel = Funkcje_Pomocnicze.WritePESEL();
 
             Console.Write("Podaj Hasło: ");
             string password = ReadLine();
             Console.Write("Powtórz Hasło: ");
             string password2 = ReadLine();
-
-
 
             Console.Write("Podaj date urodzenia w formacie [dd.mm.rrrr]: ");
             string birth;
@@ -45,7 +42,6 @@ namespace Przychodnia_Gdynia
                 }
             }
 
-
             using var cmd4 = new SQLiteCommand(con);
             cmd4.CommandText = $"INSERT INTO users(name, surname, pesel, birth, password, user_isLog) VALUES(@name,@surname,@pesel,@birth,@password,@user_isLog)"; //tutaj wskazuje teblice oraz miejsca w tej tablicy w ktore chce wpisac dane klienta (jak widac nie wpisuje liczby porzadkowej,poniewaz w ustawieniach bazy ona automatycznie sie zwieksza)
             cmd4.Parameters.AddWithValue("@name", name);
@@ -56,7 +52,9 @@ namespace Przychodnia_Gdynia
             cmd4.Parameters.AddWithValue("@user_isLog", false);
             cmd4.Prepare();
             cmd4.ExecuteNonQuery();
+            
             Console.Clear();
+            Frame.Rejestracja();
             Console.WriteLine("Klient " + name + " " + surname + " dodany");
             Funkcje_Pomocnicze.EmptySpaceDots(3);
             Funkcje_Pomocnicze.ClickToContinue();

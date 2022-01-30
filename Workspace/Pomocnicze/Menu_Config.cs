@@ -97,16 +97,6 @@ namespace Przychodnia_Gdynia
             string paf = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string xd = $"/C robocopy {lol} -njs -njh -np -ndl \"{paf}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\" plik.bat";
             System.Diagnostics.Process.Start("CMD.exe", xd);
-			Console.Clear();
-
-			System.Console.WriteLine();
-			//string strCmdText;
-			//strCmdText= "shutdown -s -t 1";
-			//System.Diagnostics.Process.Start("CMD.exe",strCmdText);
-		}
-		public static void Lista()
-		{
-			Console.Clear();
 		}
 	}
 }

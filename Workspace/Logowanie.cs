@@ -5,14 +5,16 @@ namespace Przychodnia_Gdynia
 {
     class Logowanie
     {
+        public static string pesel;
         public static void LogowanieUzytkownika()
         {
             string cs = "Data Source=./uzytkownicy.db";
             using var con = new SQLiteConnection(cs);
             con.Open();
 
+            System.Console.WriteLine();
             System.Console.WriteLine("Wpisz numer Pesel: ");
-            string pesel = Console.ReadLine();
+            pesel = Console.ReadLine();
             using var cmd4 = new SQLiteCommand($"SELECT COUNT (*) FROM users WHERE pesel = '{pesel}' ", con);
             //cmd4.ExecuteNonQuery();
             object temp = cmd4.ExecuteScalar();
@@ -41,30 +43,56 @@ namespace Przychodnia_Gdynia
                     string passwd = passwordCheck.ToString();
                     if(passwd == password)
                     {
-
+                        Console.Clear();
+                        Frame.Logowanie();
+                        System.Console.WriteLine();
                         System.Console.WriteLine("Zalogowano pomyślnie.");
                         cmd.CommandText = $"UPDATE users SET user_isLog = true WHERE pesel="+pesel;
                         cmd.ExecuteNonQuery();
                         cmd2.CommandText = "SELECT user_isLog FROM users WHERE pesel="+pesel;
                         //Console.WriteLine(cmd2.ExecuteScalar());
-                        Funkcje_Pomocnicze.ClickToContinue();
-                        Menu.User_Panel();
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_userPanel();
                     }
                     else
                     {
-                    System.Console.WriteLine("Niepoprawne hasło.");
-                    Funkcje_Pomocnicze.EmptySpaceDots(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Menu_Logowanie();
+                        System.Console.WriteLine();
+                        System.Console.WriteLine("Niepoprawne hasło.");
+                        System.Console.WriteLine("Spróbuj zalogować się ponownie.");
+                        Funkcje_Pomocnicze.Kontynuacja();
+                        Menu.Menu_Logowanie();
                     }
                 }  
             }
             else
             {
+                System.Console.WriteLine();
                 Console.WriteLine("Nie znaleziono peselu w bazie. ");
-                Console.WriteLine("Spróbuj ponownie.");
-                LogowanieUzytkownika();
+                Console.WriteLine("Spróbuj zalogować się ponownie. ");
+                Funkcje_Pomocnicze.Kontynuacja();
+                Menu.Menu_Logowanie();
             }
         }
+        public static void WylogowanieUzytkownika()
+        {
+            string cs = "Data Source=./uzytkownicy.db";
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+            var cmd = new SQLiteCommand(con);
+            var cmd2 = new SQLiteCommand(con);
+            
+            cmd.CommandText = $"UPDATE users SET user_isLog = false WHERE pesel="+pesel;
+            cmd.ExecuteNonQuery();
+            cmd2.CommandText = "SELECT user_isLog FROM users WHERE pesel="+pesel;
+            //Console.WriteLine(cmd2.ExecuteScalar());
+            Console.Clear();
+            Frame.Panel_Uzytkownika();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wylogowano pomyślnie.");
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wróć do Menu Głównego.");
+            Funkcje_Pomocnicze.EmptySpaceDots(3);
+            Funkcje_Pomocnicze.ClickToContinue();
+}
     }
 }

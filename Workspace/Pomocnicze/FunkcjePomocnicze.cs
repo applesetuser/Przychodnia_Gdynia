@@ -101,7 +101,9 @@ namespace Przychodnia_Gdynia
                         return name;
                     }
                 }
-                Console.WriteLine($"Niepoprawne {variable}.");
+                Console.Clear();
+                Frame.Rejestracja();
+                Console.WriteLine($"Niepoprawne {variable}. Spróbuj ponownie.");
             }
         }
         public static string WritePESEL()
@@ -117,9 +119,11 @@ namespace Przychodnia_Gdynia
                 }
                 else
                 {
+                    Console.Clear();
+                    Frame.Rejestracja();
                     Console.WriteLine("Niepoprawny numer PESEL.");
                     Console.WriteLine("PESEL musi składać się z 11 liczb.");
-                    Console.Write("Podaj NR PESEL: ");
+                    Console.Write("Podaj numer PESEL ponownie: ");
                 }
             }
         }
@@ -151,6 +155,11 @@ namespace Przychodnia_Gdynia
                 else return false;
             }
             else return false;
+        }
+        public static void Kontynuacja()
+        {
+            EmptySpaceDots(3);
+            ClickToContinue();
         }
     }
 }

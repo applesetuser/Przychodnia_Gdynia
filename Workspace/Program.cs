@@ -8,15 +8,11 @@ namespace Przychodnia_Gdynia
     {   
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Witaj wzychodni!!");
-            Menu_Config.Wyswietlanie();
                 //««««DEBUG««««//
                 //–––––––––––––//
+                Menu_Config.Wyswietlanie();
                 Menu.Menu_Glowne();
-            
-
-
-            
+               //Menu.Menu_Lekarze();           
         }
     }
 }

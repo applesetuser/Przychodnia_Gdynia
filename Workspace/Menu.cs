@@ -36,13 +36,13 @@ namespace Przychodnia_Gdynia
                         Menu.Menu_Rejestracja();
                         break;
                     case 2:
-                        Menu_Opcje.AKTUALNOSCI();
+                        WyboryTekstowe.AKTUALNOSCI();
                         Funkcje_Pomocnicze.TimerDot(3);
                         Funkcje_Pomocnicze.ClickToContinue();
                         Menu.Menu_Glowne();
                         break;
                     case 3:
-                        Menu_Opcje.RODO();
+                        WyboryTekstowe.RODO();
                         Funkcje_Pomocnicze.TimerDot(3);
                         Funkcje_Pomocnicze.ClickToContinue();
                         Menu.Menu_Glowne();
@@ -98,10 +98,11 @@ namespace Przychodnia_Gdynia
                     break;
             }
         }
-        public static void User_Panel()
+        public static void Menu_userPanel()
         {
             Console.Clear();
             Frame.Panel_Uzytkownika();
+            System.Console.WriteLine();
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -113,41 +114,116 @@ namespace Przychodnia_Gdynia
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
-                    System.Console.WriteLine("ghsfhgshfs DO HUJA");
+                    User_Panel.Recepty();
+                    System.Console.WriteLine("Lista dostępnych recept: ");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.User_Panel();
+                    Menu.Menu_userPanel();
                     break;
 
                 case 1:
-                    System.Console.WriteLine("gfadag CRING");
+                    User_Panel.Lekarze();
+                    System.Console.WriteLine("Lista lekarzy specjalistów:");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.User_Panel();
+                    Menu.Menu_userPanel();
                     break;
 
                 case 2:
-                    System.Console.WriteLine(" DO HUJA");
+                    User_Panel.Wizyty();
+                    System.Console.WriteLine("Terminy wizyt: ");
                     Funkcje_Pomocnicze.EmptySpaceDots(3);
                     Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.User_Panel();
+                    Menu.Menu_userPanel();
                     break;
 
                 case 3:
-                System.Console.WriteLine("insane gameplay xd");
-                Funkcje_Pomocnicze.EmptySpaceDots(3);
-                Funkcje_Pomocnicze.ClickToContinue();
-                Menu.User_Panel();
+                    //User_Panel.
+                    System.Console.WriteLine("insane gameplay xd");
+                    Funkcje_Pomocnicze.EmptySpaceDots(3);
+                    Funkcje_Pomocnicze.ClickToContinue();
+                    Menu.Menu_userPanel();
                 break;
 
                 case 4:
-                //User_Panel.Wylogowanie();
-                System.Console.WriteLine("fdfd");
-                Funkcje_Pomocnicze.EmptySpaceDots(3);
-                Funkcje_Pomocnicze.ClickToContinue();
-                Menu.Menu_Glowne();
+                    Logowanie.WylogowanieUzytkownika();
+                    Menu.Menu_Glowne();
                 break;
             }
+        }
+        public static void Menu_Lekarze()
+        {
+            Console.Clear();
+            //Frame.Lekarze();
+            System.Console.WriteLine();
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            String[] opcje = {"---KARDIOLOG---", "---NEUROLOG---","---STOMATOLOG---", "---ANESTEZJOLOG---", "---POWRÓT---" };
+            Menu_Config mainMenu = new Menu_Config(opcje);
+            switch (mainMenu.Uruchom(opcje.Length))
+            {
+                case 0:
+                    Menu_WizRec("kardiolog");
+                break;
+
+                case 1:
+                    Menu_WizRec("neurolog");   
+                break;
+
+                case 2:
+                    Menu_WizRec("stomatolog");
+                break;
+
+                case 3:
+                    Menu_WizRec("anestezjolog");
+                break;
+
+                case 4:
+                    Menu.Menu_userPanel();
+                break;
+            }        
+        }
+        public static void Menu_WizRec(string temp)
+        {
+            switch(temp)
+            {
+                case "kardiolog":
+                Menu.Menu_LekarzKardiolog();
+                break;
+
+                case "neurolog":
+                Menu.Menu_LekarzNeurolog();
+                break;
+
+                case "stomatolog":
+                Menu.Menu_LekarzStomatolog();
+                break;
+
+                case "anestezjolog":
+                Menu.Menu_LekarzAnestezjolog();
+                break;
+            }
+
+        }
+        public static void Menu_LekarzNeurolog()
+        {
+
+        }
+        public static void Menu_LekarzStomatolog()
+        {
+
+        }
+        public static void Menu_LekarzAnestezjolog()
+        {
+
+        }
+        public static void Menu_LekarzKardiolog()
+        {
+
         }
     }
 }
