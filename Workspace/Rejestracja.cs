@@ -21,11 +21,25 @@ namespace Przychodnia_Gdynia
             string name = Funkcje_Pomocnicze.WriteVariable("Imie");
             string surname = Funkcje_Pomocnicze.WriteVariable("Nazwisko");
 
-            Console.Write("Podaj Hasło: ");
-            string password = ReadLine();
-            Console.Write("Powtórz Hasło: ");
-            string password2 = ReadLine();
-            Funkcje_Pomocnicze.ValidatePassword(password, password2);
+            string password;
+            while (true)
+            {
+                Console.Write("Podaj Hasło: ");
+                password = ReadLine();
+                Console.Write("Powtórz Hasło: ");
+                string password2 = ReadLine();
+                if (Funkcje_Pomocnicze.ValidatePassword(password,password2)==true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Frame.Rejestracja();
+                    Console.WriteLine("Hasła nie są takie same!");
+
+                }
+            }
 
             Console.Write("Podaj date urodzenia w formacie [dd.mm.rrrr]: ");
             string birth;

@@ -1597,24 +1597,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/ik/.nuget/packages/": {}
+    "C:\\Users\\bkacz\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj",
+      "projectUniqueName": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj",
       "projectName": "Przychodnia_Gdynia",
-      "projectPath": "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj",
-      "packagesPath": "/Users/ik/.nuget/packages/",
-      "outputPath": "/Users/ik/Desktop/Przychodnia_Gdynia/obj/",
+      "projectPath": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj",
+      "packagesPath": "C:\\Users\\bkacz\\.nuget\\packages\\",
+      "outputPath": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/ik/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\bkacz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1661,7 +1668,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
