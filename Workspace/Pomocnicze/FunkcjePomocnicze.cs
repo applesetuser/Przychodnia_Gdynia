@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Linq;
 using System.Collections.Generic;
-
+using System.Data.SQLite;
 
 namespace Przychodnia_Gdynia
 {
@@ -117,14 +117,7 @@ namespace Przychodnia_Gdynia
                 {
                     return pesel;
                 }
-                else
-                {
-                    Console.Clear();
-                    Frame.Rejestracja();
-                    Console.WriteLine("Niepoprawny numer PESEL.");
-                    Console.WriteLine("PESEL musi składać się z 11 liczb.");
-                    Console.Write("Podaj numer PESEL ponownie: ");
-                }
+                
             }
         }
         public static bool ValidateLength(string variable)
@@ -150,11 +143,58 @@ namespace Przychodnia_Gdynia
             {
                 if (pesel.Length == 11)
                 {
-                    return true;
+                    if (CheckPesel(pesel))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else return false;
+                else 
+                {
+                    Console.Clear();
+                    Frame.Rejestracja();
+                    Console.WriteLine("Niepoprawny PESEL");
+                    Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
+                    Console.Write("Podaj numer PESEL ponownie: ");
+                    return false;
+                }
             }
-            else return false;
+            else 
+            {
+                Console.Clear();
+                Frame.Rejestracja();
+                Console.WriteLine("Niepoprawny PESEL");
+                Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
+                Console.Write("Podaj numer PESEL ponownie: ");
+                return false;
+            }
+
+        }
+        public static bool CheckPesel(string pesel)
+        {
+            string cs = "Data Source=./uzytkownicy.db";
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+            string stm = $"SELECT * FROM users WHERE pesel={pesel};";
+            using var cmd = new SQLiteCommand(stm, con);
+            var result = cmd.ExecuteScalar();
+            con.Close();
+            if (result!=null)
+            {
+                Console.Clear();
+                Frame.Rejestracja();
+                Console.WriteLine("Podany Pesel już istnieje! Podaj Inny Pesel:");
+                Console.Write("Podaj numer PESEL ponownie: ");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
         public static void Kontynuacja()
         {
