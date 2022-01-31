@@ -115,25 +115,15 @@ namespace Przychodnia_Gdynia
             {
                 case 0:
                     User_Panel.Recepty();
-                    System.Console.WriteLine("Lista otrzymanych recept: ");
-                    Funkcje_Pomocnicze.EmptySpaceDots(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
                     Menu.Menu_userPanel();
                     break;
 
                 case 1:
                     User_Panel.Lekarze();
-                    //System.Console.WriteLine("Lista lekarzy specjalistów:");
-                    Funkcje_Pomocnicze.EmptySpaceDots(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
-                    Menu.Menu_Lekarze();
                     break;
 
                 case 2:
                     User_Panel.Wizyty();
-                    System.Console.WriteLine("Terminy wizyt: ");
-                    Funkcje_Pomocnicze.EmptySpaceDots(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
                     Menu.Menu_userPanel();
                     break;
 
@@ -261,7 +251,7 @@ namespace Przychodnia_Gdynia
                 break;
 
                 case 2:
-                    Menu.Menu_Glowne();
+                    Menu.Menu_userPanel();
                 break;
             }
 

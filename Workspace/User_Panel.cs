@@ -13,15 +13,19 @@ namespace Przychodnia_Gdynia
         public static void Recepty()
         {
             //lista recept otrzymanych
+            System.Console.WriteLine("Lista otrzymanych recept: ");
+            Funkcje_Pomocnicze.Kontynuacja();
         }
         public static void Wizyty()
         {
             //lista umowionych wizyt
-
-        
+            System.Console.WriteLine("Terminy wizyt: ");
+            Funkcje_Pomocnicze.Kontynuacja();
         }
         public static void Lekarze()
         {
+            //a tutaj odwolanie do klasy wywolujacej menu wyboru czy chcemy sie umowic na wizyte/recepte
+            System.Console.WriteLine("Lista lekarzy specjalistów:");
             Menu.Menu_Lekarze();
         }
     }
