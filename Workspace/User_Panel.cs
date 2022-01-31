@@ -25,7 +25,8 @@ namespace Przychodnia_Gdynia
         public static void Lekarze()
         {
             //a tutaj odwolanie do klasy wywolujacej menu wyboru czy chcemy sie umowic na wizyte/recepte
-            System.Console.WriteLine("Lista lekarzy specjalistów:");
+            System.Console.WriteLine("Lista lekarzy specjalistów: ");
+
             Menu.Menu_Lekarze();
         }
     }

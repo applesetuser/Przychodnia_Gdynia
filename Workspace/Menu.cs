@@ -178,7 +178,7 @@ namespace Przychodnia_Gdynia
                 break;
             }        
         }
-        public static void Menu_Wizyta(string temp)
+        public static void Menu_WyborWizRec(string temp)
         {
             Console.Clear();
             //Frame.Wizyta();
@@ -186,13 +186,17 @@ namespace Przychodnia_Gdynia
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---POPROŚ LEKARZA O RECEPTĘ---", "---POWRÓT---" };
+            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---USUŃ WIZYTĘ ZE SPECJALISTA", "---POPROŚ LEKARZA O RECEPTĘ---", "---POWRÓT---" };
             Menu_Config mainMenu = new Menu_Config(opcje);
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
+                    //string temp2 = "wizyta";
+                    //zeby zrobic kolejna opcje wyboru dodajesz stringa wyzej w opcjach i dodajesz opcje do pierwszego switha
+                    
                     switch(temp)
                     {
+                        //zeby zrobic dodawanie recept i wizyt osobno skopiowac menu_lekarzx + wizyta/recepta i tam bedzie otwierac baze danych i rekord potrzebny
                         case "kardiolog":
                         Menu.Menu_LekarzKardiolog();
                         Funkcje_Pomocnicze.Kontynuacja();
@@ -221,6 +225,7 @@ namespace Przychodnia_Gdynia
                 break;
 
                 case 1:
+                //temp2 = "recepta";
                 switch(temp)
                     {
                         case "kardiolog":
@@ -251,7 +256,7 @@ namespace Przychodnia_Gdynia
                 break;
 
                 case 2:
-                    Menu.Menu_userPanel();
+                    Menu.Menu_Lekarze();
                 break;
             }
 
@@ -266,7 +271,7 @@ namespace Przychodnia_Gdynia
         }
         public static void Menu_LekarzAnestezjolog()
         {
-            System.Console.WriteLine("ANESTEZJOLOG");
+            System.Console.WriteLine("anestezjolog");
         }
         public static void Menu_LekarzKardiolog()
         {

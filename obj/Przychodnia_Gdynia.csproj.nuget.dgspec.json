@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj": {}
+    "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj": {}
   },
   "projects": {
-    "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj": {
+    "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj",
+        "projectUniqueName": "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj",
         "projectName": "Przychodnia_Gdynia",
-        "projectPath": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\Przychodnia_Gdynia.csproj",
-        "packagesPath": "C:\\Users\\bkacz\\.nuget\\packages\\",
-        "outputPath": "C:\\Szkola\\Programowanie_Projekt\\Przychodnia_Gdynia\\obj\\",
+        "projectPath": "/Users/ik/Desktop/Przychodnia_Gdynia/Przychodnia_Gdynia.csproj",
+        "packagesPath": "/Users/ik/.nuget/packages/",
+        "outputPath": "/Users/ik/Desktop/Przychodnia_Gdynia/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\bkacz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ik/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }
