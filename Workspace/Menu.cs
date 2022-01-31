@@ -109,33 +109,26 @@ namespace Przychodnia_Gdynia
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            String[] opcje = {"---RECEPTY---", "---LEKARZE---","---TERMINY WIZYT---", "---detka kys---", "---WYLOGUJ SIĘ---" };
+            String[] opcje = {"---RECEPTY---", "---TERMINY WIZYT---","---LEKARZE---", "---WYLOGUJ SIĘ---" };
             Menu_Config mainMenu = new Menu_Config(opcje);
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
                     User_Panel.Recepty();
                     Menu.Menu_userPanel();
-                    break;
+                break;
 
                 case 1:
-                    User_Panel.Lekarze();
-                    break;
-
-                case 2:
                     User_Panel.Wizyty();
-                    Menu.Menu_userPanel();
-                    break;
-
-                case 3:
-                    //User_Panel.
-                    System.Console.WriteLine("insane gameplay xd");
-                    Funkcje_Pomocnicze.EmptySpaceDots(3);
-                    Funkcje_Pomocnicze.ClickToContinue();
                     Menu.Menu_userPanel();
                 break;
 
-                case 4:
+                case 2:
+                    
+                    User_Panel.Lekarze();
+                break;
+
+                case 3:
                     Logowanie.WylogowanieUzytkownika();
                     Menu.Menu_Glowne();
                 break;
@@ -158,18 +151,26 @@ namespace Przychodnia_Gdynia
             switch (mainMenu.Uruchom(opcje.Length))
             {
                 case 0:
+                Clear();
+                    Frame.Kardiolog();
                     Menu_Wizyta("kardiolog");
                 break;
 
                 case 1:
+                Clear();
+                    Frame.Neurolog();
                     Menu_Wizyta("neurolog");   
                 break;
 
                 case 2:
+                Clear();
+                    Frame.Stomatolog();
                     Menu_Wizyta("stomatolog");
                 break;
 
                 case 3:
+                Clear();
+                    Frame.Anestezjolog();
                     Menu_Wizyta("anestezjolog");
                 break;
 
@@ -178,15 +179,15 @@ namespace Przychodnia_Gdynia
                 break;
             }        
         }
-        public static void Menu_WyborWizRec(string temp)
+        public static void Menu_Wizyta(string temp)
         {
-            Console.Clear();
-            //Frame.Wizyta();
+            //Console.Clear();
+            //Frame.Wizyty();
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---USUŃ WIZYTĘ ZE SPECJALISTA", "---POPROŚ LEKARZA O RECEPTĘ---", "---POWRÓT---" };
+            String[] opcje = {"---UMÓW SIĘ NA WIZYTĘ ZE SPECJALISTA---", "---USUŃ WIZYTĘ ZE SPECJALISTA", "---POWRÓT---" };
             Menu_Config mainMenu = new Menu_Config(opcje);
             switch (mainMenu.Uruchom(opcje.Length))
             {
@@ -198,25 +199,33 @@ namespace Przychodnia_Gdynia
                     {
                         //zeby zrobic dodawanie recept i wizyt osobno skopiowac menu_lekarzx + wizyta/recepta i tam bedzie otwierac baze danych i rekord potrzebny
                         case "kardiolog":
-                        Menu.Menu_LekarzKardiolog();
+                        Clear();
+                        Frame.Kardiolog();
+                        Menu.Menu_WizytaKardiolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
                         
                         case "neurolog":
-                        Menu.Menu_LekarzNeurolog();
+                        Clear();
+                        Frame.Neurolog();
+                        Menu.Menu_WizytaNeurolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
 
                         case "stomatolog":
-                        Menu.Menu_LekarzStomatolog();
+                        Clear();
+                        Frame.Stomatolog();
+                        Menu.Menu_WizytaStomatolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
                         
                         case "anestezjolog":
-                        Menu_LekarzAnestezjolog();
+                        Clear();
+                        Frame.Anestezjolog();
+                        Menu.Menu_WizytaAnestezjolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
@@ -229,25 +238,25 @@ namespace Przychodnia_Gdynia
                 switch(temp)
                     {
                         case "kardiolog":
-                        Menu.Menu_LekarzKardiolog();
+                        Menu.Menu_UsunWizytaKardiolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
                         
                         case "neurolog":
-                        Menu.Menu_LekarzNeurolog();
+                        Menu.Menu_UsunWizytaNeurolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
 
                         case "stomatolog":
-                        Menu.Menu_LekarzStomatolog();
+                        Menu.Menu_UsunWizytaStomatolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
                         
                         case "anestezjolog":
-                        Menu_LekarzAnestezjolog();
+                        Menu.Menu_UsunWizytaAnestezjolog();
                         Funkcje_Pomocnicze.Kontynuacja();
                         //Menu.Menu_userPanel();
                         break;
@@ -261,21 +270,37 @@ namespace Przychodnia_Gdynia
             }
 
         }
-        public static void Menu_LekarzNeurolog()
+        public static void Menu_WizytaNeurolog()
         {
-           System.Console.WriteLine("neurolog"); 
+           System.Console.WriteLine("wizyta neurolog"); 
         }
-        public static void Menu_LekarzStomatolog()
+        public static void Menu_WizytaStomatolog()
         {
-            System.Console.WriteLine("stomatolog");
+            System.Console.WriteLine("wizyta stomatolog");
         }
-        public static void Menu_LekarzAnestezjolog()
+        public static void Menu_WizytaAnestezjolog()
         {
-            System.Console.WriteLine("anestezjolog");
+            System.Console.WriteLine("wizyta anestezjolog");
         }
-        public static void Menu_LekarzKardiolog()
+        public static void Menu_WizytaKardiolog()
         {
-            System.Console.WriteLine("kardiolog");
+            System.Console.WriteLine("wizyta kardiolog");
+        }
+        public static void Menu_UsunWizytaNeurolog()
+        {
+           System.Console.WriteLine("wizyta neurolog"); 
+        }
+        public static void Menu_UsunWizytaStomatolog()
+        {
+            System.Console.WriteLine("usun wizyta stomatolog");
+        }
+        public static void Menu_UsunWizytaAnestezjolog()
+        {
+            System.Console.WriteLine("usun wizyta anestezjolog");
+        }
+        public static void Menu_UsunWizytaKardiolog()
+        {
+            System.Console.WriteLine("usun wizyta kardiolog");
         }
     }
 }

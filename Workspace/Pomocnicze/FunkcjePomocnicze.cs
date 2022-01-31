@@ -156,6 +156,7 @@ namespace Przychodnia_Gdynia
                 {
                     Console.Clear();
                     Frame.Rejestracja();
+                    System.Console.WriteLine();
                     Console.WriteLine("Niepoprawny PESEL");
                     Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
                     Console.Write("Podaj numer PESEL ponownie: ");
@@ -166,7 +167,8 @@ namespace Przychodnia_Gdynia
             {
                 Console.Clear();
                 Frame.Rejestracja();
-                Console.WriteLine("Niepoprawny PESEL");
+                System.Console.WriteLine();
+                Console.WriteLine("Niepoprawny numer PESEL");
                 Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
                 Console.Write("Podaj numer PESEL ponownie: ");
                 return false;
@@ -186,8 +188,9 @@ namespace Przychodnia_Gdynia
             {
                 Console.Clear();
                 Frame.Rejestracja();
-                Console.WriteLine("Podany Pesel już istnieje! Podaj Inny Pesel:");
-                Console.Write("Podaj numer PESEL ponownie: ");
+                System.Console.WriteLine();
+                Console.WriteLine("Podany numer Pesel już znajduje się w bazie!");
+                Console.Write("Podaj właściwy numer PESEL lub spróbuj się zalogować. ");
                 return false;
             }
             else
