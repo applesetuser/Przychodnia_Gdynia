@@ -145,7 +145,7 @@ namespace Przychodnia_Gdynia
         {
 
             Console.Clear();
-            //Frame.Lekarze();
+            Frame.ListaLekarzy();
             System.Console.WriteLine();
             Console.WriteLine("");
             Console.WriteLine("");
