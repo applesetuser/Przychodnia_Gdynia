@@ -86,6 +86,35 @@ namespace Przychodnia_Gdynia
                 return false;
 
         }
+        public static bool Wizyta_DateCheck(string date)
+        {
+            string today = System.DateTime.Now.ToString("yyyy.MM.dd");
+
+            List<string> now = new List<string>(today.Split('.'));
+            int thisDay = int.Parse(now[2]);
+            int thisMonth = int.Parse(now[1]);
+            int thisYear = int.Parse(now[0]);
+
+            List<string> data = new List<string>(date.Split('.'));
+            int day;
+            int month;
+            int year;
+
+            if (data.Count == 3)
+            {
+
+                int.TryParse(data[0], out day);
+                int.TryParse(data[1], out month);
+                int.TryParse(data[2], out year);
+            }
+            else
+                return false;
+
+            if (day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900 && year < 3000 && thisDay + thisMonth * 10 + thisYear * 1000 < day + month * 10 + year * 1000)
+                return true;
+            else
+                return false;
+        }
         public static string WriteVariable(string variable)
         {
             while (true)
@@ -108,7 +137,7 @@ namespace Przychodnia_Gdynia
         }
         public static string WritePESEL()
         {
-            Console.Write("Podaj NR PESEL: ");
+            Console.Write("Podaj numer PESEL: ");
             string pesel;
             while (true)
             {
@@ -157,8 +186,13 @@ namespace Przychodnia_Gdynia
                     Console.Clear();
                     Frame.Rejestracja();
                     System.Console.WriteLine();
-                    Console.WriteLine("Niepoprawny PESEL");
-                    Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
+                    Console.WriteLine("Niepoprawny numer PESEL");
+                    Console.WriteLine("Numer PESEL powinien skladac sie z 11 liczb.");
+                    Funkcje_Pomocnicze.Kontynuacja();
+                    //Menu.Menu_Rejestracja();
+                    System.Console.WriteLine();
+                    Frame.Rejestracja();
+                    System.Console.WriteLine();
                     Console.Write("Podaj numer PESEL ponownie: ");
                     return false;
                 }
@@ -168,8 +202,13 @@ namespace Przychodnia_Gdynia
                 Console.Clear();
                 Frame.Rejestracja();
                 System.Console.WriteLine();
-                Console.WriteLine("Niepoprawny numer PESEL");
-                Console.WriteLine("Nr PESEL powinien skladac sie z 11 liczb");
+                Console.WriteLine("Niepoprawny numer PESEL.");
+                Console.WriteLine("Numer PESEL powinien skladac sie z 11 liczb.");
+                Funkcje_Pomocnicze.Kontynuacja();
+                Menu.Menu_Rejestracja();
+                System.Console.WriteLine();
+                Frame.Rejestracja();
+                System.Console.WriteLine();
                 Console.Write("Podaj numer PESEL ponownie: ");
                 return false;
             }
@@ -180,7 +219,7 @@ namespace Przychodnia_Gdynia
             string cs = "Data Source=./uzytkownicy.db";
             using var con = new SQLiteConnection(cs);
             con.Open();
-            string stm = $"SELECT * FROM users WHERE pesel={pesel};";
+            string stm = $"SELECT * FROM users WHERE pesel='{pesel}';";
             using var cmd = new SQLiteCommand(stm, con);
             var result = cmd.ExecuteScalar();
             con.Close();
@@ -190,19 +229,33 @@ namespace Przychodnia_Gdynia
                 Frame.Rejestracja();
                 System.Console.WriteLine();
                 Console.WriteLine("Podany numer Pesel już znajduje się w bazie!");
-                Console.Write("Podaj właściwy numer PESEL lub spróbuj się zalogować. ");
+                Console.WriteLine("Podaj właściwy numer PESEL lub spróbuj się zalogować.");
+                Funkcje_Pomocnicze.Kontynuacja();
+                Menu.Menu_Rejestracja();
+                //Console.Clear();
+                //Frame.Rejestracja();
+                //System.Console.WriteLine();
+                //Console.Write("Podaj numer PESEL: ");
+
                 return false;
             }
             else
             {
                 return true;
             }
-            
         }
         public static void Kontynuacja()
         {
             EmptySpaceDots(3);
             ClickToContinue();
+        }
+        public static bool Wizyta_GodzinaCheck(int godzina)
+        {
+            if(godzina >= 10 && godzina <= 16)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

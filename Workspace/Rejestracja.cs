@@ -41,7 +41,7 @@ namespace Przychodnia_Gdynia
                 }
             }
 
-            Console.Write("Podaj date urodzenia w formacie [dd.mm.rrrr]: ");
+            Console.Write("Podaj datę urodzenia w formacie [dd.mm.rrrr]: ");
             string birth;
             while (true)
             {
@@ -71,7 +71,7 @@ namespace Przychodnia_Gdynia
             
             Console.Clear();
             Frame.Rejestracja();
-            Console.WriteLine("Klient " + name + " " + surname + " dodany");
+            Console.WriteLine("Klient " + name + " " + surname + " został dodany pomyślnie.");
             Funkcje_Pomocnicze.EmptySpaceDots(3);
             Funkcje_Pomocnicze.ClickToContinue();
             Menu.Menu_Glowne();

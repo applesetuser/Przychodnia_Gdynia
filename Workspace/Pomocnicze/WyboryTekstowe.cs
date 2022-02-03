@@ -10,6 +10,17 @@ namespace Przychodnia_Gdynia
         {
             Console.Clear();
             Frame.Aktualnosci();
+            System.Console.WriteLine();
+            System.Console.WriteLine(@"
+PRZYCHODNIA PILNIE ZATRUDNI LEKARZY. 
+
+KONTAKT  TEL. 58 936-96-72.
+
+POSIADAMY RÓWNIEŻ WOLNE MIEJSCA REZYDENCKIE,
+
+PRZYCDHONIA ZATRUDNI PIELĘGNIARKĘ ŚRODOWISKOWĄ,
+
+KONTAKT  TEL. 58 936-96-72.");
         }
         public static void RODO()
         {

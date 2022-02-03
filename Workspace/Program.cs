@@ -13,6 +13,7 @@ namespace Przychodnia_Gdynia
                 //Menu_Config.Wyswietlanie();
                 Menu.Menu_Glowne();
                //Menu.Menu_Lekarze();           
+                //User_Panel.Recepty();
         }
     }
 }

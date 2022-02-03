@@ -8,6 +8,7 @@ namespace Przychodnia_Gdynia
 {
     class Menu
     {
+        //public static string pesel = "temp";
         public static void Menu_Glowne()
         {
             
@@ -50,6 +51,7 @@ namespace Przychodnia_Gdynia
                     case 4:
                         Frame.Wyjscie();
                         Thread.Sleep(1000);
+                        System.Environment.Exit(0);
                         break;
                 }
             }
@@ -102,6 +104,7 @@ namespace Przychodnia_Gdynia
         {
             Console.Clear();
             Frame.Panel_Uzytkownika();
+            User_Panel.Dane_Wyswietlanie();
             System.Console.WriteLine();
             Console.WriteLine("");
             Console.WriteLine("");
@@ -272,35 +275,593 @@ namespace Przychodnia_Gdynia
         }
         public static void Menu_WizytaNeurolog()
         {
-           System.Console.WriteLine("wizyta neurolog"); 
+            //System.Console.WriteLine("wizyta neurolog"); 
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            using var cmd3 = new SQLiteCommand($"SELECT pesel FROM users WHERE user_isLog = true", con);
+
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+            //string pesel_wizytujacego = pesel;
+            //cmd3.ExecuteScalar();
+            System.Console.WriteLine();
+            Console.Write("Podaj datę wizyty w formacie [dd.mm.rrrr]: ");
+            string Data;
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                {
+                    Data = input;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podana data jest nieprawidlowa.");
+                    Console.Write("Podaj datę jeszcze raz: ");
+                }
+            }
+            Console.Clear();
+            Frame.Neurolog();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+            System.Console.WriteLine("Podaj godzinę wizyty: ");
+            int czas;
+            int godzina;
+            //czas = int.Parse(Console.ReadLine());
+            while(true)
+            {
+                czas = int.Parse(Console.ReadLine());
+                if(Funkcje_Pomocnicze.Wizyta_GodzinaCheck(czas) == true)
+                {
+                    godzina = czas;
+                    break;
+                }
+                else
+                {
+                Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+                System.Console.Write("Podaj godzinę w formacie {godzina}:00.");
+                Console.Write(" Godzina: ");
+                }
+            }
+            using var cmd = new SQLiteCommand(con);
+            cmd.CommandText = $"INSERT INTO Wizyta(Data_wizyty, Godzina_wizyty, Lekarz_wizytowany, Pesel_wizytującego) VALUES(@Data_wizyty, @Godzina_wizyty, 'Neurolog', @Pesel_wizytującego)";
+            cmd.Parameters.AddWithValue("@Data_wizyty", Data);
+            cmd.Parameters.AddWithValue("@Pesel_wizytującego", pesel);
+            cmd.Parameters.AddWithValue("@Godzina_wizyty", czas);
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wizyta została dodana pomyślnie.");
+            //Funkcje_Pomocnicze.Kontynuacja();
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
         }
         public static void Menu_WizytaStomatolog()
         {
-            System.Console.WriteLine("wizyta stomatolog");
+            //System.Console.WriteLine("wizyta neurolog"); 
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            using var cmd3 = new SQLiteCommand($"SELECT pesel FROM users WHERE user_isLog = true", con);
+
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+            //string pesel_wizytujacego = pesel;
+            //cmd3.ExecuteScalar();
+            System.Console.WriteLine();
+            Console.Write("Podaj datę wizyty w formacie [dd.mm.rrrr]: ");
+            string Data;
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                {
+                    Data = input;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podana data jest nieprawidlowa.");
+                    Console.Write("Podaj datę jeszcze raz: ");
+                }
+            }
+            Console.Clear();
+            Frame.Neurolog();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+            System.Console.WriteLine("Podaj godzinę wizyty: ");
+            int czas;
+            int godzina;
+            //czas = int.Parse(Console.ReadLine());
+            while(true)
+            {
+                czas = int.Parse(Console.ReadLine());
+                if(Funkcje_Pomocnicze.Wizyta_GodzinaCheck(czas) == true)
+                {
+                    godzina = czas;
+                    break;
+                }
+                else
+                {
+                Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+                System.Console.WriteLine("Podaj godzinę w formacie {godzina}:00.");
+                Console.Write(" Godzina: ");
+                }
+            }
+            using var cmd = new SQLiteCommand(con);
+            cmd.CommandText = $"INSERT INTO Wizyta(Data_wizyty, Godzina_wizyty, Lekarz_wizytowany, Pesel_wizytującego) VALUES(@Data_wizyty, @Godzina_wizyty, 'Stomatolog', @Pesel_wizytującego)";
+            cmd.Parameters.AddWithValue("@Data_wizyty", Data);
+            cmd.Parameters.AddWithValue("@Pesel_wizytującego", pesel);
+            cmd.Parameters.AddWithValue("@Godzina_wizyty", czas);
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wizyta została dodana pomyślnie.");
+            //Funkcje_Pomocnicze.Kontynuacja();
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
         }
         public static void Menu_WizytaAnestezjolog()
         {
-            System.Console.WriteLine("wizyta anestezjolog");
+            //System.Console.WriteLine("wizyta neurolog"); 
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            using var cmd3 = new SQLiteCommand($"SELECT pesel FROM users WHERE user_isLog = true", con);
+
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+            //string pesel_wizytujacego = pesel;
+            //cmd3.ExecuteScalar();
+            System.Console.WriteLine();
+            Console.Write("Podaj datę wizyty w formacie [dd.mm.rrrr]: ");
+            string Data;
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                {
+                    Data = input;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podana data jest nieprawidlowa.");
+                    Console.Write("Podaj datę jeszcze raz: ");
+                }
+            }
+            Console.Clear();
+            Frame.Neurolog();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+            System.Console.WriteLine("Podaj godzinę wizyty: ");
+            int czas;
+            int godzina;
+            //czas = int.Parse(Console.ReadLine());
+            while(true)
+            {
+                czas = int.Parse(Console.ReadLine());
+                if(Funkcje_Pomocnicze.Wizyta_GodzinaCheck(czas) == true)
+                {
+                    godzina = czas;
+                    break;
+                }
+                else
+                {
+                Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+                System.Console.WriteLine("Podaj godzinę w formacie {godzina}:00.");
+                Console.Write(" Godzina: ");
+                }
+            }
+            using var cmd = new SQLiteCommand(con);
+            cmd.CommandText = $"INSERT INTO Wizyta(Data_wizyty, Godzina_wizyty, Lekarz_wizytowany, Pesel_wizytującego) VALUES(@Data_wizyty, @Godzina_wizyty, 'Anestezjolog', @Pesel_wizytującego)";
+            cmd.Parameters.AddWithValue("@Data_wizyty", Data);
+            cmd.Parameters.AddWithValue("@Pesel_wizytującego", pesel);
+            cmd.Parameters.AddWithValue("@Godzina_wizyty", czas);
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wizyta została dodana pomyślnie.");
+            //Funkcje_Pomocnicze.Kontynuacja();
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
         }
         public static void Menu_WizytaKardiolog()
         {
-            System.Console.WriteLine("wizyta kardiolog");
+            //System.Console.WriteLine("wizyta neurolog"); 
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            using var cmd3 = new SQLiteCommand($"SELECT pesel FROM users WHERE user_isLog = true", con);
+
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+            //string pesel_wizytujacego = pesel;
+            //cmd3.ExecuteScalar();
+            System.Console.WriteLine();
+            Console.Write("Podaj datę wizyty w formacie [dd.mm.rrrr]: ");
+            string Data;
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                {
+                    Data = input;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podana data jest nieprawidlowa.");
+                    Console.Write("Podaj datę jeszcze raz: ");
+                }
+            }
+            Console.Clear();
+            Frame.Neurolog();
+            System.Console.WriteLine();
+            System.Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+            System.Console.WriteLine("Podaj godzinę wizyty: ");
+            int czas;
+            int godzina;
+            //czas = int.Parse(Console.ReadLine());
+            while(true)
+            {
+                czas = int.Parse(Console.ReadLine());
+                if(Funkcje_Pomocnicze.Wizyta_GodzinaCheck(czas) == true)
+                {
+                    godzina = czas;
+                    break;
+                }
+                else
+                {
+                Console.WriteLine("Przychodnia przyjmuje wizyty o pełnych godzinach, w porach od 10:00-16:00");
+                System.Console.WriteLine("Podaj godzinę w formacie {godzina}:00.");
+                Console.Write(" Godzina: ");
+                }
+            }
+            using var cmd = new SQLiteCommand(con);
+            cmd.CommandText = $"INSERT INTO Wizyta(Data_wizyty, Godzina_wizyty, Lekarz_wizytowany, Pesel_wizytującego) VALUES(@Data_wizyty, @Godzina_wizyty, 'Kardiolog', @Pesel_wizytującego)";
+            cmd.Parameters.AddWithValue("@Data_wizyty", Data);
+            cmd.Parameters.AddWithValue("@Pesel_wizytującego", pesel);
+            cmd.Parameters.AddWithValue("@Godzina_wizyty", czas);
+            System.Console.WriteLine();
+            System.Console.WriteLine("Wizyta została dodana pomyślnie.");
+            //Funkcje_Pomocnicze.Kontynuacja();
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
         }
+        //tutaj usuwanie wizyt juz//
         public static void Menu_UsunWizytaNeurolog()
         {
-           System.Console.WriteLine("wizyta neurolog"); 
+            //System.Console.WriteLine("wizyta neurolog"); 
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            //wyswietlanie
+            using var cmd3 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE user_isLog = true", con);
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+
+            using var cmd4 = new SQLiteCommand($"SELECT Data_wizyty, Godzina_wizyty, Lekarz_wizytowany FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Neurolog'", con);
+            using (SQLiteDataReader reader = cmd4.ExecuteReader())
+            {
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyty umówione z Neurologiem:");
+                System.Console.WriteLine();
+            while(reader.Read())
+            {
+                System.Console.Write("Wizyta w dniu "+reader["Data_wizyty"]+"r. o godzinie ");
+                Console.Write(reader["Godzina_wizyty"]+":00.");
+                System.Console.WriteLine();
+            }
+                System.Console.WriteLine("-----------------------------------------------");
+            }
+            
+            using var cmd5 = new SQLiteCommand($"SELECT Data_wizyty FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Neurolog'", con);
+            using var cmd8 = new SQLiteCommand($"SELECT COUNT (Data_wizyty) FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Neurolog'", con);
+            object check = cmd8.ExecuteScalar();
+            string RecordCheck = check.ToString();
+            int checkR = int.Parse(RecordCheck);
+            //System.Console.WriteLine(checkR);
+            
+            string DataWizyty = "null";
+            if(checkR>0)
+            {
+                object dataW = cmd5.ExecuteScalar();
+                DataWizyty = dataW.ToString();
+                System.Console.WriteLine("Podaj datę wizyty z Neurologiem, którą chcesz usunąć: ");
+                System.Console.Write("Data: ");
+            }
+            else 
+            {
+            System.Console.WriteLine("Brak zarejestrowanych wizyt!");
+            Funkcje_Pomocnicze.ClickToContinue();
+            Menu.Menu_Lekarze();
+            }
+            string Data;
+                while (true)
+                {
+                    string input = Console.ReadLine();
+                    if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                    {
+                        Data = input;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podana data jest nieprawidlowa.");
+                        Console.Write("Podaj datę jeszcze raz: ");
+                    }
+                }
+            if(Data == DataWizyty && checkR > 0)
+            {
+                using var cmd6 = new SQLiteCommand(con);
+                cmd5.CommandText = $"DELETE FROM Wizyta WHERE Lekarz_wizytowany = 'Neurolog' AND Pesel_wizytującego = {pesel} AND Data_wizyty = '{Data}'";
+                //System.Console.WriteLine("Wizyty z Neurologiem zostały usunięte pomyślnie.");
+                cmd5.Prepare();
+                cmd5.ExecuteNonQuery();
+                Console.Clear();
+                Frame.Neurolog();
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyta z Neurologiem została usunięta pomyślnie.");
+            }
+            else
+            {
+                System.Console.WriteLine("Nie ma wizyty zarejestrowanej na podaną datę!");
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Menu_Lekarze();
+            }
         }
         public static void Menu_UsunWizytaStomatolog()
         {
-            System.Console.WriteLine("usun wizyta stomatolog");
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            //wyswietlanie
+            using var cmd3 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE user_isLog = true", con);
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+
+            using var cmd4 = new SQLiteCommand($"SELECT Data_wizyty, Godzina_wizyty, Lekarz_wizytowany FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Stomatolog'", con);
+            using (SQLiteDataReader reader = cmd4.ExecuteReader())
+            {
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyty umówione z Stomatologiem:");
+                System.Console.WriteLine();
+            while(reader.Read())
+            {
+                System.Console.Write("Wizyta w dniu "+reader["Data_wizyty"]+"r. o godzinie ");
+                Console.Write(reader["Godzina_wizyty"]+":00.");
+                System.Console.WriteLine();
+            }
+                System.Console.WriteLine("-----------------------------------------------");
+            }
+            
+            using var cmd5 = new SQLiteCommand($"SELECT Data_wizyty FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Stomatolog'", con);
+            using var cmd8 = new SQLiteCommand($"SELECT COUNT (Data_wizyty) FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Stomatolog'", con);
+            object check = cmd8.ExecuteScalar();
+            string RecordCheck = check.ToString();
+            int checkR = int.Parse(RecordCheck);
+            //System.Console.WriteLine(checkR);
+            
+            string DataWizyty = "null";
+            if(checkR>0)
+            {
+                object dataW = cmd5.ExecuteScalar();
+                DataWizyty = dataW.ToString();
+                System.Console.WriteLine("Podaj datę wizyty ze Stomatologiem, którą chcesz usunąć: ");
+                System.Console.Write("Data: ");
+            }
+            else 
+            {
+            System.Console.WriteLine("Brak zarejestrowanych wizyt!");
+            Funkcje_Pomocnicze.ClickToContinue();
+            Menu.Menu_Lekarze();
+            }
+            string Data;
+                while (true)
+                {
+                    string input = Console.ReadLine();
+                    if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                    {
+                        Data = input;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podana data jest nieprawidlowa.");
+                        Console.Write("Podaj datę jeszcze raz: ");
+                    }
+                }
+            if(Data == DataWizyty && checkR > 0)
+            {
+                using var cmd6 = new SQLiteCommand(con);
+                cmd5.CommandText = $"DELETE FROM Wizyta WHERE Lekarz_wizytowany = 'Stomatolog' AND Pesel_wizytującego = {pesel} AND Data_wizyty = '{Data}'";
+                //System.Console.WriteLine("Wizyty z Neurologiem zostały usunięte pomyślnie.");
+                cmd5.Prepare();
+                cmd5.ExecuteNonQuery();
+                Console.Clear();
+                Frame.Neurolog();
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyta ze Stomatologiem została usunięta pomyślnie.");
+            }
+            else
+            {
+                System.Console.WriteLine("Nie ma wizyty zarejestrowanej na podaną datę!");
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Menu_Lekarze();
+            }
         }
         public static void Menu_UsunWizytaAnestezjolog()
         {
-            System.Console.WriteLine("usun wizyta anestezjolog");
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            //wyswietlanie
+            using var cmd3 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE user_isLog = true", con);
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+
+            using var cmd4 = new SQLiteCommand($"SELECT Data_wizyty, Godzina_wizyty, Lekarz_wizytowany FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Anestezjolog'", con);
+            using (SQLiteDataReader reader = cmd4.ExecuteReader())
+            {
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyty umówione z Anestezjologiem:");
+                System.Console.WriteLine();
+            while(reader.Read())
+            {
+                System.Console.Write("Wizyta w dniu "+reader["Data_wizyty"]+"r. o godzinie ");
+                Console.Write(reader["Godzina_wizyty"]+":00.");
+                System.Console.WriteLine();
+            }
+                System.Console.WriteLine("-----------------------------------------------");
+            }
+            
+            using var cmd5 = new SQLiteCommand($"SELECT Data_wizyty FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Anestezjolog'", con);
+            using var cmd8 = new SQLiteCommand($"SELECT COUNT (Data_wizyty) FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Anestezjolog'", con);
+            object check = cmd8.ExecuteScalar();
+            string RecordCheck = check.ToString();
+            int checkR = int.Parse(RecordCheck);
+            //System.Console.WriteLine(checkR);
+            
+            string DataWizyty = "null";
+            if(checkR>0)
+            {
+                object dataW = cmd5.ExecuteScalar();
+                DataWizyty = dataW.ToString();
+                System.Console.WriteLine("Podaj datę wizyty z Anestezjologiem, którą chcesz usunąć: ");
+                System.Console.Write("Data: ");
+            }
+            else 
+            {
+            System.Console.WriteLine("Brak zarejestrowanych wizyt!");
+            Funkcje_Pomocnicze.ClickToContinue();
+            Menu.Menu_Lekarze();
+            }
+            string Data;
+                while (true)
+                {
+                    string input = Console.ReadLine();
+                    if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                    {
+                        Data = input;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podana data jest nieprawidlowa.");
+                        Console.Write("Podaj datę jeszcze raz: ");
+                    }
+                }
+            if(Data == DataWizyty && checkR > 0)
+            {
+                using var cmd6 = new SQLiteCommand(con);
+                cmd5.CommandText = $"DELETE FROM Wizyta WHERE Lekarz_wizytowany = 'Anestezjolog' AND Pesel_wizytującego = {pesel} AND Data_wizyty = '{Data}'";
+                //System.Console.WriteLine("Wizyty z Neurologiem zostały usunięte pomyślnie.");
+                cmd5.Prepare();
+                cmd5.ExecuteNonQuery();
+                Console.Clear();
+                Frame.Neurolog();
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyta z Anestezjologiem została usunięta pomyślnie.");
+            }
+            else
+            {
+                System.Console.WriteLine("Nie ma wizyty zarejestrowanej na podaną datę!");
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Menu_Lekarze();
+            }
         }
         public static void Menu_UsunWizytaKardiolog()
         {
-            System.Console.WriteLine("usun wizyta kardiolog");
+            string cs = "Data Source=./uzytkownicy.db"; //connection string  (wskazuje sciezke do bazy danych)
+            using var con = new SQLiteConnection(cs);
+            con.Open();
+
+            //wyswietlanie
+            using var cmd3 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE user_isLog = true", con);
+            object pesel_wizytujacego = cmd3.ExecuteScalar();
+            string pesel = pesel_wizytujacego.ToString();
+
+
+            using var cmd4 = new SQLiteCommand($"SELECT Data_wizyty, Godzina_wizyty, Lekarz_wizytowany FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Kardiolog'", con);
+            using (SQLiteDataReader reader = cmd4.ExecuteReader())
+            {
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyty umówione z Kardiologiem:");
+                System.Console.WriteLine();
+            while(reader.Read())
+            {
+                System.Console.Write("Wizyta w dniu "+reader["Data_wizyty"]+"r. o godzinie ");
+                Console.Write(reader["Godzina_wizyty"]+":00.");
+                System.Console.WriteLine();
+            }
+                System.Console.WriteLine("-----------------------------------------------");
+            }
+            
+            using var cmd5 = new SQLiteCommand($"SELECT Data_wizyty FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Kardiolog'", con);
+            using var cmd8 = new SQLiteCommand($"SELECT COUNT (Data_wizyty) FROM Wizyta WHERE pesel_wizytującego = {pesel} AND Lekarz_wizytowany = 'Kardiolog'", con);
+            object check = cmd8.ExecuteScalar();
+            string RecordCheck = check.ToString();
+            int checkR = int.Parse(RecordCheck);
+            //System.Console.WriteLine(checkR);
+            
+            string DataWizyty = "null";
+            if(checkR>0)
+            {
+                object dataW = cmd5.ExecuteScalar();
+                DataWizyty = dataW.ToString();
+                System.Console.WriteLine("Podaj datę wizyty z Kardiologiem, którą chcesz usunąć: ");
+                System.Console.Write("Data: ");
+            }
+            else 
+            {
+            System.Console.WriteLine("Brak zarejestrowanych wizyt!");
+            Funkcje_Pomocnicze.ClickToContinue();
+            Menu.Menu_Lekarze();
+            }
+            string Data;
+                while (true)
+                {
+                    string input = Console.ReadLine();
+                    if (Funkcje_Pomocnicze.Wizyta_DateCheck(input) == true)
+                    {
+                        Data = input;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podana data jest nieprawidlowa.");
+                        Console.Write("Podaj datę jeszcze raz: ");
+                    }
+                }
+            if(Data == DataWizyty && checkR > 0)
+            {
+                using var cmd6 = new SQLiteCommand(con);
+                cmd5.CommandText = $"DELETE FROM Wizyta WHERE Lekarz_wizytowany = 'Kardiolog' AND Pesel_wizytującego = {pesel} AND Data_wizyty = '{Data}'";
+                //System.Console.WriteLine("Wizyty z Neurologiem zostały usunięte pomyślnie.");
+                cmd5.Prepare();
+                cmd5.ExecuteNonQuery();
+                Console.Clear();
+                Frame.Neurolog();
+                System.Console.WriteLine();
+                System.Console.WriteLine("Wizyta z Kardiologiem została usunięta pomyślnie.");
+            }
+            else
+            {
+                System.Console.WriteLine("Nie ma wizyty zarejestrowanej na podaną datę!");
+                Funkcje_Pomocnicze.ClickToContinue();
+                Menu.Menu_Lekarze();
+            }
         }
     }
 }
