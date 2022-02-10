@@ -27,7 +27,7 @@ namespace Przychodnia_Gdynia
             System.Console.WriteLine();
             System.Console.WriteLine("Lista otrzymanych recept dla użytkownika o numerze PESEL "+pesel+":");
             System.Console.WriteLine("");
-            using var cmd4 = new SQLiteCommand($"SELECT lekarz, tresc FROM Recepty WHERE pesel = {pesel}", con);
+            using var cmd4 = new SQLiteCommand($"SELECT lekarz, tresc FROM Recepty WHERE pesel = '{pesel}'", con);
             using (SQLiteDataReader reader = cmd4.ExecuteReader())
             {
                 while(reader.Read())
@@ -91,7 +91,7 @@ namespace Przychodnia_Gdynia
             object pesel_wizytujacego = cmd3.ExecuteScalar();
             string pesel = pesel_wizytujacego.ToString();
 
-            using var cmd4 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE pesel = {pesel}", con);
+            using var cmd4 = new SQLiteCommand($"SELECT pesel, name, surname, birth FROM users WHERE pesel = '{pesel}'", con);
             using (SQLiteDataReader reader = cmd4.ExecuteReader())
             {
                 while(reader.Read())

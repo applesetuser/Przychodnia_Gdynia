@@ -10,10 +10,14 @@ namespace Przychodnia_Gdynia
         {
                 //««««DEBUG««««//
                 //–––––––––––––//
-                //Menu_Config.Wyswietlanie();
-                Menu.Menu_Glowne();
-               //Menu.Menu_Lekarze();           
-                //User_Panel.Recepty();
+            //Menu_Config.Wyswietlanie();
+            //Menu.Menu_Lekarze();           
+            //User_Panel.Recepty();
+                
+                //««««PROGRAM««««//
+                //–––––––––––––//
+            Menu.Menu_Glowne();
+                
         }
     }
 }
